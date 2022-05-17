@@ -17,10 +17,11 @@ class CreateBlogsTable extends Migration
             $table->integer('id');
             $table->string('title');
             $table->string('url');
-            $table->string('urlImage');
+            $table->string('imageUrl');
             $table->string('newsSite');
             $table->string('summary');
             $table->string('publishedAt');
+            $table->string('updatedAt');
             $table->timestamps();
         });
     }

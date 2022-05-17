@@ -19,10 +19,11 @@ class ArticleSeeder extends Seeder
             'featured' => true,
             'title' => 'Article 01',
             'url' => 'https://www.spaceflightnews.com/article01',
-            'urlImage' => 'https://www.spaceflightnews.com/article01.png',
+            'imageUrl' => 'https://www.spaceflightnews.com/article01.png',
             'newsSite' => 'Space Flight News',
             'summary' => 'The first article :o',
-            'publishedAt' => '2022-05-16T22:43:44.148Z'
+            'publishedAt' => '2022-05-16T22:43:44.148Z',
+            'updatedAt' => '2022-05-16T22:43:44.148Z'
         ]);
     }
 }

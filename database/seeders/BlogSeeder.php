@@ -18,10 +18,11 @@ class BlogSeeder extends Seeder
             'id' => '1',
             'title' => 'Blog 01',
             'url' => 'https://www.spaceflightnews.com/blog01',
-            'urlImage' => 'https://www.spaceflightnews.com/blog01.png',
+            'imageUrl' => 'https://www.spaceflightnews.com/blog01.png',
             'newsSite' => 'Space Flight News',
             'summary' => 'The first blog :o',
-            'publishedAt' => '2022-05-16T22:43:44.148Z'
+            'publishedAt' => '2022-05-16T22:43:44.148Z',
+            'updatedAt' => '2022-05-16T22:43:44.148Z'
         ]);
     }
 }

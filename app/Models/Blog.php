@@ -13,9 +13,10 @@ class Blog extends Model
         'id',
         'title',
         'url',
-        'urlImage',
+        'imageUrl',
         'newsSite',
         'summary',
-        'publishedAt'
+        'publishedAt',
+        'updatedAt'
     ];
 }

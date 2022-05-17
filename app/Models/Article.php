@@ -11,12 +11,13 @@ class Article extends Model
 
     protected $fillable = [
         'id',
-        'featured',
         'title',
         'url',
-        'urlImage',
+        'imageUrl',
         'newsSite',
         'summary',
-        'publishedAt'
+        'publishedAt',
+        'updatedAt',
+        'featured'
     ];
 }
