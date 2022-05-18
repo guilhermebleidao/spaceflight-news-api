@@ -12,12 +12,12 @@ This project is a case from the Code N' App intern program.
 - [x] - [GET] /articles/{id} : Get info about one article
 - [ ] - [POST] /articles /: Add a new article
 - [ ] - [PUT] /articles/{id} : Update an article based on id
-- [ ] - [DELETE] /articles/{id} : Delete an article based on id
+- [x] - [DELETE] /articles/{id} : Delete an article based on id
 - [ ] - [GET] /blogs/ : List all blog posts from the database (must use pagination)
 - [x] - [GET] /blogs/{id} : Get info about one blog post
 - [ ] - [POST] /blogs/ : Add a new blog post
 - [ ] - [PUT] /blogs/{id} : Update a blog post based on id
-- [ ] - [DELETE] /blogs/{id} : Delete an blog post based on id
+- [x] - [DELETE] /blogs/{id} : Delete an blog post based on id
 
 ### Features
 - [ ] - Create a script to feed the database with all articles and blog posts from Space Flight News

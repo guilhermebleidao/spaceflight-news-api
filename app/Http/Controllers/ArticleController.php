@@ -64,13 +64,21 @@ class ArticleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @OA\Delete(
+     *   tags={"Articles"},
+     *   path="/api/articles/{id}",
+     *   summary="Article destroy",
+     *   @OA\Parameter(name="id", in="path", required=true),
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        if (!isset($article->id)) {
+            return response()->json(['error' => 'Article not found'], 404);
+        }
+        $article->delete();
     }
 }

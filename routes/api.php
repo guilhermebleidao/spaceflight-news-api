@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TestController;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +27,13 @@ Route::get('/', [TestController::class, 'test']);
 Route::prefix('articles')->group(function(){
     Route::get('/', [ArticleController::class, 'index']);
     Route::get('/{id}', [ArticleController::class, 'show']);
+    Route::delete('/{id}', [ArticleController::class, 'destroy']);
 });
 
 Route::prefix('blogs')->group(function(){
     Route::get('/', [BlogController::class, 'index']);
     Route::get('/{id}', [BlogController::class, 'show']);
+    Route::delete('/{id}', [BlogController::class, 'destroy']);
 });
 
 Route::fallback(function(){

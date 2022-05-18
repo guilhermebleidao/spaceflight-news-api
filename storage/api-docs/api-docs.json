@@ -41,6 +41,28 @@
                         "description": "Not Found"
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Article destroy",
+                "operationId": "97f34592611a1dd53a086865e29706c9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
             }
         },
         "/api/blogs": {
@@ -64,6 +86,28 @@
                 ],
                 "summary": "Blog show",
                 "operationId": "edf2058da1858ee867ebc4789b3195f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Blogs destroy",
+                "operationId": "9fb0bb3fc65e987a03d2b5ecdda4489d",
                 "parameters": [
                     {
                         "name": "id",

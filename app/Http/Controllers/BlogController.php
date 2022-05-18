@@ -64,13 +64,21 @@ class BlogController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
+     * @OA\Delete(
+     *   tags={"Blogs"},
+     *   path="/api/blogs/{id}",
+     *   summary="Blogs destroy",
+     *   @OA\Parameter(name="id", in="path", required=true),
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
-        //
+        $blog = Blog::find($id);
+        if (!isset($blog->id)) {
+            return response()->json(['error' => 'Blog post not found'], 404);
+        }
+        $blog->delete();
     }
 }
