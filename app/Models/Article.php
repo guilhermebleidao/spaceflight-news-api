@@ -20,4 +20,9 @@ class Article extends Model
         'updatedAt',
         'featured'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

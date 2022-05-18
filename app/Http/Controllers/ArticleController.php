@@ -30,14 +30,22 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *   tags={"Articles"},
+     *   path="/api/articles/{id}",
+     *   summary="Article show",
+     *   @OA\Parameter(name="id", in="path", required=true),
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      */
-    public function show(Article $article)
+    public function show($id)
     {
-        //
+        $article = Article::find($id);
+        if ($article == null) {
+            return response()->json(['error' => 'Article not found'], 404);
+        }
+        return $article;
     }
 
     /**

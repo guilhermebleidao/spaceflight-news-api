@@ -19,4 +19,9 @@ class Blog extends Model
         'publishedAt',
         'updatedAt'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }
