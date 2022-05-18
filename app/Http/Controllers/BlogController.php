@@ -9,13 +9,16 @@ use App\Http\Requests\UpdateBlogRequest;
 class BlogController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *   tags={"Blogs"},
+     *   path="/api/blogs",
+     *   summary="Blog index",
+     *   @OA\Response(response=200, description="OK")
+     * )
      */
     public function index()
     {
-        //
+        return Blog::all();
     }
 
     /**

@@ -24,10 +24,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/', [TestController::class, 'test']);
 
 Route::prefix('articles')->group(function(){
+    Route::get('/', [ArticleController::class, 'index']);
     Route::get('/{id}', [ArticleController::class, 'show']);
 });
 
 Route::prefix('blogs')->group(function(){
+    Route::get('/', [BlogController::class, 'index']);
     Route::get('/{id}', [BlogController::class, 'show']);
 });
 

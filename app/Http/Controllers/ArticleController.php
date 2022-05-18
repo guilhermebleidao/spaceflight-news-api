@@ -9,13 +9,16 @@ use App\Http\Requests\UpdateArticleRequest;
 class ArticleController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *   tags={"Articles"},
+     *   path="/api/articles",
+     *   summary="Article index",
+     *   @OA\Response(response=200, description="OK")
+     * )
      */
     public function index()
     {
-        //
+        return Article::all();
     }
 
     /**
@@ -42,7 +45,7 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
-        if ($article == null) {
+        if (!isset($article->id)) {
             return response()->json(['error' => 'Article not found'], 404);
         }
         return $article;
