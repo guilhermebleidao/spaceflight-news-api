@@ -1,12 +1,14 @@
 # spaceflight-news-api
 
+<i>Read this in other languages:</i> [Portuguese](README.pt.md)
+
 A Restful API based on [Space Flight News](https://api.spaceflightnewsapi.net/v3/documentation), a public project with space flights data.
 
 This project is a case from the Code N' App intern program.
 
 ## Must have
 
-### Routes
+#### Routes
 - [x] - [GET] / : Return "Space Flight News"
 - [ ] - [GET] /articles/ : List all articles from the database (must use pagination)
 - [x] - [GET] /articles/{id} : Get info about one article
@@ -19,7 +21,7 @@ This project is a case from the Code N' App intern program.
 - [ ] - [PUT] /blogs/{id} : Update a blog post based on id
 - [x] - [DELETE] /blogs/{id} : Delete an blog post based on id
 
-### Features
+#### Features
 - [ ] - Create a script to feed the database with all articles and blog posts from Space Flight News
 - [ ] - Create a CRON to run daily at 9am updating the database with new articles and blog posts from Space Flight News
 - [ ] - Create a alert to send an email if there is any failure during the synchronization
@@ -29,16 +31,21 @@ This project is a case from the Code N' App intern program.
 ## Nice to have
 
 - [ ] - Login and control acess system
+- [ ] - Log history
 
-## Installing the dependencies
+## Getting started 
+
+#### Installing the project
 
 Open the terminal at the same directory that contains the file `package.json`, and execute:
 
 ```bash
+php artisan key:generate
+
 composer install
 ```
 
-## Executing the project
+#### Executing the project
 
 Open the terminal at the same directory that contains the file `package.json`, and execute:
 
