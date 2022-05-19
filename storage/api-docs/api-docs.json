@@ -19,6 +19,76 @@
                 }
             }
         },
+        "/api/articles/": {
+            "post": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Articles store",
+                "operationId": "a81f7b4efd34044248ecc9726f844ac3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "url",
+                                    "imageUrl",
+                                    "newsSite",
+                                    "summary",
+                                    "publishedAt",
+                                    "updatedAt"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "An article :)"
+                                    },
+                                    "url": {
+                                        "type": "string",
+                                        "example": "https://www.spaceflightnews.com/newarticle"
+                                    },
+                                    "imageUrl": {
+                                        "type": "string",
+                                        "example": "https://www.spaceflightnews.com/newarticle.png"
+                                    },
+                                    "newsSite": {
+                                        "type": "string",
+                                        "example": "Space Flight News"
+                                    },
+                                    "summary": {
+                                        "type": "string",
+                                        "example": "New article :o"
+                                    },
+                                    "publishedAt": {
+                                        "type": "string",
+                                        "example": "2022-05-16T22:43:44.148Z"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "example": "2022-05-16T22:43:44.148Z"
+                                    },
+                                    "featured": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/api/articles/{id}": {
             "get": {
                 "tags": [
@@ -75,6 +145,72 @@
                 "responses": {
                     "200": {
                         "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/blogs/": {
+            "post": {
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Blogs store",
+                "operationId": "717446edb32989e107fd62d672cae614",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "url",
+                                    "imageUrl",
+                                    "newsSite",
+                                    "summary",
+                                    "publishedAt",
+                                    "updatedAt"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "A blog post :)"
+                                    },
+                                    "url": {
+                                        "type": "string",
+                                        "example": "https://www.spaceflightnews.com/newpost"
+                                    },
+                                    "imageUrl": {
+                                        "type": "string",
+                                        "example": "https://www.spaceflightnews.com/newpost.png"
+                                    },
+                                    "newsSite": {
+                                        "type": "string",
+                                        "example": "Space Flight News"
+                                    },
+                                    "summary": {
+                                        "type": "string",
+                                        "example": "New post :o"
+                                    },
+                                    "publishedAt": {
+                                        "type": "string",
+                                        "example": "2022-05-16T22:43:44.148Z"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "example": "2022-05-16T22:43:44.148Z"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 }
             }

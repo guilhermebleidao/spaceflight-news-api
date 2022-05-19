@@ -22,14 +22,37 @@ class BlogController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBlogRequest  $request
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *   tags={"Blogs"},
+     *   path="/api/blogs/",
+     *   summary="Blogs store",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\JsonContent(
+     *       type="object",
+     *       required={"title", "url", "imageUrl", "newsSite", "summary", "publishedAt", "updatedAt"},
+     *       @OA\Property(property="title", type="string", example="A blog post :)"),
+     *       @OA\Property(property="url", type="string", example="https://www.spaceflightnews.com/newpost"),
+     *       @OA\Property(property="imageUrl", type="string", example="https://www.spaceflightnews.com/newpost.png"),
+     *       @OA\Property(property="newsSite", type="string", example="Space Flight News"),
+     *       @OA\Property(property="summary", type="string", example="New post :o"),
+     *       @OA\Property(property="publishedAt", type="string", example="2022-05-16T22:43:44.148Z"),
+     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z")
+     *     )
+     *   ),
+     *   @OA\Response(response=201, description="Created"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      */
     public function store(StoreBlogRequest $request)
     {
-        //
+        $id = Blog::min('id') -1;
+        $id = $id >= 0 ? -1 : $id;
+
+        $data = array_merge(['id' => $id], $request->all());
+        if (Blog::create($data)) {
+            return response()->json($data, 201);
+        }
     }
 
     /**

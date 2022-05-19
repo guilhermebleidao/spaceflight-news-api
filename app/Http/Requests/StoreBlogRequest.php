@@ -13,7 +13,7 @@ class StoreBlogRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class StoreBlogRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required', 'string', 'max:255'],
+            'url' => ['required', 'url', 'max:255', 'unique:blogs,url'],
+            'imageUrl' => ['required', 'url', 'max:255'],
+            'newsSite' => ['required', 'max:255'],
+            'summary' => ['required', 'string', 'max:255'],
+            'publishedAt' => ['required', 'string', 'max:255'],
+            'updatedAt' => ['required', 'string', 'max:255']
         ];
     }
 }
