@@ -12,7 +12,7 @@ class ArticleController extends Controller
      * @OA\Get(
      *   tags={"Articles"},
      *   path="/api/articles",
-     *   summary="Article index",
+     *   summary="Articles index",
      *   @OA\Response(response=200, description="OK")
      * )
      */
@@ -60,7 +60,7 @@ class ArticleController extends Controller
      * @OA\Get(
      *   tags={"Articles"},
      *   path="/api/articles/{id}",
-     *   summary="Article show",
+     *   summary="Articles show",
      *   @OA\Parameter(name="id", in="path", required=true),
      *   @OA\Response(response=200, description="OK"),
      *   @OA\Response(response=404, description="Not Found")
@@ -76,22 +76,45 @@ class ArticleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateArticleRequest  $request
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *   tags={"Articles"},
+     *   path="/api/articles/{id}",
+     *   summary="Articles update",
+     *   @OA\Parameter(name="id", in="path", required=true),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\JsonContent(
+     *       type="object",
+     *       required={"title", "url", "imageUrl", "newsSite", "summary", "publishedAt", "updatedAt"},
+     *       @OA\Property(property="title", type="string", example="Edited article post :)"),
+     *       @OA\Property(property="url", type="string", example="https://www.spaceflightnews.com/editedarticle"),
+     *       @OA\Property(property="imageUrl", type="string", example="https://www.spaceflightnews.com/editedarticle.png"),
+     *       @OA\Property(property="newsSite", type="string", example="Space Flight News"),
+     *       @OA\Property(property="summary", type="string", example="Edited article :o"),
+     *       @OA\Property(property="publishedAt", type="string", example="2022-05-16T22:43:44.148Z"),
+     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z")
+     *     )
+     *   ),
+     *   @OA\Response(response=201, description="Created"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      */
-    public function update(UpdateArticleRequest $request, Article $article)
+
+    public function update(UpdateArticleRequest $request, $id)
     {
-        //
+        $article = Article::find($id);
+        if (!isset($article->id)) {
+            return response()->json(['error' => 'Article not found'], 404);
+        }
+        $article->update($request->all());
+        return $article;
     }
 
     /**
      * @OA\Delete(
      *   tags={"Articles"},
      *   path="/api/articles/{id}",
-     *   summary="Article destroy",
+     *   summary="Articles destroy",
      *   @OA\Parameter(name="id", in="path", required=true),
      *   @OA\Response(response=200, description="OK"),
      *   @OA\Response(response=404, description="Not Found")

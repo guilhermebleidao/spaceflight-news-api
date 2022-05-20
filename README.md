@@ -13,12 +13,12 @@ This project is a case from the Code N' App intern program.
 - [ ] - [GET] /articles/ : List all articles from the database (must use pagination)
 - [x] - [GET] /articles/{id} : Get info about one article
 - [x] - [POST] /articles /: Add a new article
-- [ ] - [PUT] /articles/{id} : Update an article based on id
+- [x] - [PUT] /articles/{id} : Update an article based on id
 - [x] - [DELETE] /articles/{id} : Delete an article based on id
 - [ ] - [GET] /blogs/ : List all blog posts from the database (must use pagination)
 - [x] - [GET] /blogs/{id} : Get info about one blog post
 - [x] - [POST] /blogs/ : Add a new blog post
-- [ ] - [PUT] /blogs/{id} : Update a blog post based on id
+- [x] - [PUT] /blogs/{id} : Update a blog post based on id
 - [x] - [DELETE] /blogs/{id} : Delete an blog post based on id
 
 #### Features

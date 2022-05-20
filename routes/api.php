@@ -28,6 +28,7 @@ Route::prefix('articles')->group(function(){
     Route::get('/', [ArticleController::class, 'index']);
     Route::get('/{id}', [ArticleController::class, 'show']);
     Route::post('/', [ArticleController::class, 'store']);
+    Route::put('/{id}', [ArticleController::class, 'update']);
     Route::delete('/{id}', [ArticleController::class, 'destroy']);
 });
 
@@ -35,6 +36,7 @@ Route::prefix('blogs')->group(function(){
     Route::get('/', [BlogController::class, 'index']);
     Route::get('/{id}', [BlogController::class, 'show']);
     Route::post('/', [BlogController::class, 'store']);
+    Route::put('/{id}', [BlogController::class, 'update']);
     Route::delete('/{id}', [BlogController::class, 'destroy']);
 });
 

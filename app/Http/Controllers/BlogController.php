@@ -12,7 +12,7 @@ class BlogController extends Controller
      * @OA\Get(
      *   tags={"Blogs"},
      *   path="/api/blogs",
-     *   summary="Blog index",
+     *   summary="Blogs index",
      *   @OA\Response(response=200, description="OK")
      * )
      */
@@ -59,7 +59,7 @@ class BlogController extends Controller
      * @OA\Get(
      *   tags={"Blogs"},
      *   path="/api/blogs/{id}",
-     *   summary="Blog show",
+     *   summary="Blogs show",
      *   @OA\Parameter(name="id", in="path", required=true),
      *   @OA\Response(response=200, description="OK"),
      *   @OA\Response(response=404, description="Not Found")
@@ -75,15 +75,37 @@ class BlogController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBlogRequest  $request
-     * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *   tags={"Blogs"},
+     *   path="/api/blogs/{id}",
+     *   summary="Blogs update",
+     *   @OA\Parameter(name="id", in="path", required=true),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\JsonContent(
+     *       type="object",
+     *       required={"title", "url", "imageUrl", "newsSite", "summary", "publishedAt", "updatedAt"},
+     *       @OA\Property(property="title", type="string", example="Edited blog post :)"),
+     *       @OA\Property(property="url", type="string", example="https://www.spaceflightnews.com/editedpost"),
+     *       @OA\Property(property="imageUrl", type="string", example="https://www.spaceflightnews.com/editedpost.png"),
+     *       @OA\Property(property="newsSite", type="string", example="Space Flight News"),
+     *       @OA\Property(property="summary", type="string", example="Edited post :o"),
+     *       @OA\Property(property="publishedAt", type="string", example="2022-05-16T22:43:44.148Z"),
+     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z")
+     *     )
+     *   ),
+     *   @OA\Response(response=201, description="Created"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      */
-    public function update(UpdateBlogRequest $request, Blog $blog)
+    public function update(UpdateBlogRequest $request, $id)
     {
-        //
+        $blog = Blog::find($id);
+        if (!isset($blog->id)) {
+            return response()->json(['error' => 'Blog post not found'], 404);
+        }
+        $blog->update($request->all());
+        return $blog;
     }
 
     /**

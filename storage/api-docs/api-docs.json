@@ -10,7 +10,7 @@
                 "tags": [
                     "Articles"
                 ],
-                "summary": "Article index",
+                "summary": "Articles index",
                 "operationId": "11aa4cc6561a7b94c56d1201d62513ee",
                 "responses": {
                     "200": {
@@ -94,7 +94,7 @@
                 "tags": [
                     "Articles"
                 ],
-                "summary": "Article show",
+                "summary": "Articles show",
                 "operationId": "b3e529eab04efb5d305b07e2e58d9869",
                 "parameters": [
                     {
@@ -112,11 +112,82 @@
                     }
                 }
             },
+            "put": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Articles update",
+                "operationId": "2717d5a8e3b1f16637aded325347f9ad",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "url",
+                                    "imageUrl",
+                                    "newsSite",
+                                    "summary",
+                                    "publishedAt",
+                                    "updatedAt"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Edited article post :)"
+                                    },
+                                    "url": {
+                                        "type": "string",
+                                        "example": "https://www.spaceflightnews.com/editedarticle"
+                                    },
+                                    "imageUrl": {
+                                        "type": "string",
+                                        "example": "https://www.spaceflightnews.com/editedarticle.png"
+                                    },
+                                    "newsSite": {
+                                        "type": "string",
+                                        "example": "Space Flight News"
+                                    },
+                                    "summary": {
+                                        "type": "string",
+                                        "example": "Edited article :o"
+                                    },
+                                    "publishedAt": {
+                                        "type": "string",
+                                        "example": "2022-05-16T22:43:44.148Z"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "example": "2022-05-16T22:43:44.148Z"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
             "delete": {
                 "tags": [
                     "Articles"
                 ],
-                "summary": "Article destroy",
+                "summary": "Articles destroy",
                 "operationId": "97f34592611a1dd53a086865e29706c9",
                 "parameters": [
                     {
@@ -140,7 +211,7 @@
                 "tags": [
                     "Blogs"
                 ],
-                "summary": "Blog index",
+                "summary": "Blogs index",
                 "operationId": "9819e5802278e060898795fe3c919599",
                 "responses": {
                     "200": {
@@ -220,7 +291,7 @@
                 "tags": [
                     "Blogs"
                 ],
-                "summary": "Blog show",
+                "summary": "Blogs show",
                 "operationId": "edf2058da1858ee867ebc4789b3195f4",
                 "parameters": [
                     {
@@ -232,6 +303,77 @@
                 "responses": {
                     "200": {
                         "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Blogs update",
+                "operationId": "6a99affa8f7d94cd429d58eb73cf0e88",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "url",
+                                    "imageUrl",
+                                    "newsSite",
+                                    "summary",
+                                    "publishedAt",
+                                    "updatedAt"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Edited blog post :)"
+                                    },
+                                    "url": {
+                                        "type": "string",
+                                        "example": "https://www.spaceflightnews.com/editedpost"
+                                    },
+                                    "imageUrl": {
+                                        "type": "string",
+                                        "example": "https://www.spaceflightnews.com/editedpost.png"
+                                    },
+                                    "newsSite": {
+                                        "type": "string",
+                                        "example": "Space Flight News"
+                                    },
+                                    "summary": {
+                                        "type": "string",
+                                        "example": "Edited post :o"
+                                    },
+                                    "publishedAt": {
+                                        "type": "string",
+                                        "example": "2022-05-16T22:43:44.148Z"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "example": "2022-05-16T22:43:44.148Z"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
                     },
                     "404": {
                         "description": "Not Found"

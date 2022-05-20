@@ -13,12 +13,12 @@ Este projeto é um case do programa de estágio da Code N' App.
 - [ ] - [GET] /articles/ : Lista todos os artigos da base de dados (com paginação)
 - [x] - [GET] /articles/{id} : Obtém informação sobre um artigo
 - [x] - [POST] /articles /: Adiciona um artigo
-- [ ] - [PUT] /articles/{id} : Atualiza um artigo baseado no id
+- [x] - [PUT] /articles/{id} : Atualiza um artigo baseado no id
 - [x] - [DELETE] /articles/{id} : Deleta um artigo baseado no id
 - [ ] - [GET] /blogs/ : Lista todos os blogs da base de dados (com paginação)
 - [x] - [GET] /blogs/{id} : Obtém informação sobre um blog
 - [x] - [POST] /blogs/ : Adiciona um blog
-- [ ] - [PUT] /blogs/{id} : Atualiza um blog baseado no id
+- [x] - [PUT] /blogs/{id} : Atualiza um blog baseado no id
 - [x] - [DELETE] /blogs/{id} : Deleta um blog baseado no id
 
 #### Funcionalidades
