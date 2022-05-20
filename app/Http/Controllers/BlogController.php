@@ -101,9 +101,6 @@ class BlogController extends Controller
     public function update(UpdateBlogRequest $request, $id)
     {
         $blog = Blog::find($id);
-        if (!isset($blog->id)) {
-            return response()->json(['error' => 'Blog post not found'], 404);
-        }
         $blog->update($request->all());
         return $blog;
     }

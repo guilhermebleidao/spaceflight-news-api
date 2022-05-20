@@ -16,6 +16,11 @@ class UpdateArticleRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge(['id' => $this->route('id')]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,6 +29,7 @@ class UpdateArticleRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => ['required', 'exists:articles,id'],
             'title' => ['required', 'string', 'max:255'],
             'url' => ['required', 'url', 'max:255', 'unique:articles,url'],
             'imageUrl' => ['required', 'url', 'max:255'],

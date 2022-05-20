@@ -103,9 +103,6 @@ class ArticleController extends Controller
     public function update(UpdateArticleRequest $request, $id)
     {
         $article = Article::find($id);
-        if (!isset($article->id)) {
-            return response()->json(['error' => 'Article not found'], 404);
-        }
         $article->update($request->all());
         return $article;
     }
