@@ -10,12 +10,12 @@ This project is a case from the Code N' App intern program.
 
 #### Routes
 - [x] - [GET] / : Return "Space Flight News"
-- [ ] - [GET] /articles/ : List all articles from the database (must use pagination)
+- [x] - [GET] /articles/ : List all articles from the database (must use pagination)
 - [x] - [GET] /articles/{id} : Get info about one article
 - [x] - [POST] /articles /: Add a new article
 - [x] - [PUT] /articles/{id} : Update an article based on id
 - [x] - [DELETE] /articles/{id} : Delete an article based on id
-- [ ] - [GET] /blogs/ : List all blog posts from the database (must use pagination)
+- [x] - [GET] /blogs/ : List all blog posts from the database (must use pagination)
 - [x] - [GET] /blogs/{id} : Get info about one blog post
 - [x] - [POST] /blogs/ : Add a new blog post
 - [x] - [PUT] /blogs/{id} : Update a blog post based on id
@@ -25,11 +25,12 @@ This project is a case from the Code N' App intern program.
 - [ ] - Create a script to feed the database with all articles and blog posts from Space Flight News
 - [ ] - Create a CRON to run daily at 9am updating the database with new articles and blog posts from Space Flight News
 - [ ] - Create a alert to send an email if there is any failure during the synchronization
-- [ ] - Document the API using [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger)
+- [x] - Document the API using [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger)
 - [ ] - Create unit tests for the API endpoints
 
 ## Nice to have
 
+- [ ] - Continuous Delivery
 - [ ] - Login and control acess system
 - [ ] - Log history
 

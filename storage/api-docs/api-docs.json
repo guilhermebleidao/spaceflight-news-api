@@ -12,6 +12,14 @@
                 ],
                 "summary": "Articles index",
                 "operationId": "11aa4cc6561a7b94c56d1201d62513ee",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -213,6 +221,14 @@
                 ],
                 "summary": "Blogs index",
                 "operationId": "9819e5802278e060898795fe3c919599",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"

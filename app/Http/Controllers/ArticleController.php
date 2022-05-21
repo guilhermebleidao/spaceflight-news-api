@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -13,12 +14,13 @@ class ArticleController extends Controller
      *   tags={"Articles"},
      *   path="/api/articles",
      *   summary="Articles index",
+     *   @OA\Parameter(name="page",in="query",required=true,example="1"),
      *   @OA\Response(response=200, description="OK")
      * )
      */
     public function index()
     {
-        return Article::all();
+        return DB::table('articles')->paginate(10);
     }
 
     /**

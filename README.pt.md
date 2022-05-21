@@ -10,12 +10,12 @@ Este projeto é um case do programa de estágio da Code N' App.
 
 #### Rotas
 - [x] - [GET] / : Retorna "Space Flight News"
-- [ ] - [GET] /articles/ : Lista todos os artigos da base de dados (com paginação)
+- [x] - [GET] /articles/ : Lista todos os artigos da base de dados (com paginação)
 - [x] - [GET] /articles/{id} : Obtém informação sobre um artigo
 - [x] - [POST] /articles /: Adiciona um artigo
 - [x] - [PUT] /articles/{id} : Atualiza um artigo baseado no id
 - [x] - [DELETE] /articles/{id} : Deleta um artigo baseado no id
-- [ ] - [GET] /blogs/ : Lista todos os blogs da base de dados (com paginação)
+- [x] - [GET] /blogs/ : Lista todos os blogs da base de dados (com paginação)
 - [x] - [GET] /blogs/{id} : Obtém informação sobre um blog
 - [x] - [POST] /blogs/ : Adiciona um blog
 - [x] - [PUT] /blogs/{id} : Atualiza um blog baseado no id
@@ -25,11 +25,12 @@ Este projeto é um case do programa de estágio da Code N' App.
 - [ ] - Criar um script para alimentar a base de dados com todos os artigos e blogs do Space Flight News
 - [ ] - Criar um CRON que rode diariamente às 9am atualizando a base de dados com novos artigos e blogs do Space Flight News
 - [ ] - Criar um alerta para enviar um email se houver alguma falha durante a sincronização
-- [ ] - Documentar a API usando [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger)
+- [x] - Documentar a API usando [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger)
 - [ ] - Criar testes unitários para os endpoints da API
 
 ## Seria bom ter
 
+- [ ] - Entrega contínua
 - [ ] - Login e sistema de controle de acesso
 - [ ] - Histórico de Log
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -13,12 +14,13 @@ class BlogController extends Controller
      *   tags={"Blogs"},
      *   path="/api/blogs",
      *   summary="Blogs index",
+     *   @OA\Parameter(name="page",in="query",required=true,example="1"),
      *   @OA\Response(response=200, description="OK")
      * )
      */
     public function index()
     {
-        return Blog::all();
+        return DB::table('blogs')->paginate(10);
     }
 
     /**
