@@ -24,4 +24,12 @@ class Blog extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function launches() {
+        return $this->belongsToMany(Launch::class, 'blogs_launches', 'blog_id', 'launch_id');
+    }
+
+    public function events() {
+        return $this->belongsToMany(Event::class, 'blogs_events', 'blog_id', 'event_id');
+    }
 }

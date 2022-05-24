@@ -10,4 +10,10 @@ class Launch extends Model
     use HasFactory;
 
     protected $table = 'launches';
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'pivot'
+    ];
 }

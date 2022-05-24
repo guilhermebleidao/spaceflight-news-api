@@ -20,7 +20,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return DB::table('articles')->paginate(10);
+        return Article::with(['launches', 'events'])->paginate(10);
     }
 
     /**

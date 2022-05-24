@@ -20,7 +20,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return DB::table('blogs')->paginate(10);
+        return Blog::with(['launches', 'events'])->paginate(10);
     }
 
     /**

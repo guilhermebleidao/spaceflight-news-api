@@ -25,4 +25,12 @@ class Article extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function launches() {
+        return $this->belongsToMany(Launch::class, 'articles_launches', 'article_id', 'launch_id');
+    }
+
+    public function events() {
+        return $this->belongsToMany(Event::class, 'articles_events', 'article_id', 'event_id');
+    }
 }

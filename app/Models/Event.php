@@ -10,4 +10,10 @@ class Event extends Model
     use HasFactory;
 
     protected $table = 'events';
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'pivot'
+    ];
 }
