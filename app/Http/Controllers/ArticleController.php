@@ -69,25 +69,8 @@ class ArticleController extends Controller
         $data = array_merge(['id' => $id], $request->all());
         $article = Article::create($data);
 
-        if (isset($request->launches)) {
-            foreach ($request->launches as $launch)  {
-                Launch::updateOrCreate(
-                    ['id' => $launch['id']],
-                    ['provider' => $launch['provider']]
-                );
-            }
-            $article->launches()->syncWithoutDetaching(array_column($request->launches, 'id'));
-        }
-
-        if (isset($request->events)) {
-            foreach ($request->events as $event)  {
-                Event::updateOrCreate(
-                    ['id' => $event['id']],
-                    ['provider' => $event['provider']]
-                );
-            }
-            $article->events()->syncWithoutDetaching(array_column($request->events, 'id'));
-        }
+        if (isset($request->launches)) { $article->updateOrCreateLaunches($request->launches); }
+        if (isset($request->events)) { $article->updateOrCreateEvents($request->events); }
 
         return response()->json($data, 201);
     }

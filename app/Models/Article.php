@@ -35,4 +35,24 @@ class Article extends Model
     public function events() {
         return $this->belongsToMany(Event::class, 'articles_events', 'article_id', 'event_id');
     }
+
+    public function updateOrCreateLaunches($launches) {
+        foreach ($launches as $launch)  {
+            Launch::updateOrCreate(
+                ['id' => $launch['id']],
+                ['provider' => $launch['provider']]
+            );
+        }
+        $this->launches()->syncWithoutDetaching(array_column($launches, 'id'));
+    }
+
+    public function updateOrCreateEvents($events) {
+        foreach ($events as $event)  {
+            Event::updateOrCreate(
+                ['id' => $event['id']],
+                ['provider' => $event['provider']]
+            );
+        }
+        $this->events()->syncWithoutDetaching(array_column($events, 'id'));
+    }
 }

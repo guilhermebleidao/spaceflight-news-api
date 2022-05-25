@@ -68,25 +68,8 @@ class BlogController extends Controller
         $data = array_merge(['id' => $id], $request->all());
         $blog = Blog::create($data);
 
-        if (isset($request->launches)) {
-            foreach ($request->launches as $launch)  {
-                Launch::updateOrCreate(
-                    ['id' => $launch['id']],
-                    ['provider' => $launch['provider']]
-                );
-            }
-            $blog->launches()->syncWithoutDetaching(array_column($request->launches, 'id'));
-        }
-
-        if (isset($request->events)) {
-            foreach ($request->events as $event)  {
-                Event::updateOrCreate(
-                    ['id' => $event['id']],
-                    ['provider' => $event['provider']]
-                );
-            }
-            $blog->events()->syncWithoutDetaching(array_column($request->events, 'id'));
-        }
+        if (isset($request->launches)) { $blog->updateOrCreateLaunches($request->launches); }
+        if (isset($request->events)) { $blog->updateOrCreateEvents($request->events); }
 
         return response()->json($data, 201);
     }
