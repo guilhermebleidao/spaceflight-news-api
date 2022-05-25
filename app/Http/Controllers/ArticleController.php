@@ -104,7 +104,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = Article::find($id);
+        $article = Article::with(['launches', 'events'])->find($id);
         if (!isset($article->id)) {
             return response()->json(['error' => 'Article not found'], 404);
         }

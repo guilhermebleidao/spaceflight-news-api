@@ -103,7 +103,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::with(['launches', 'events'])->find($id);
         if (!isset($blog->id)) {
             return response()->json(['error' => 'Blog post not found'], 404);
         }
