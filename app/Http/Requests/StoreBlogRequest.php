@@ -30,7 +30,13 @@ class StoreBlogRequest extends FormRequest
             'newsSite' => ['required', 'max:255'],
             'summary' => ['required', 'string', 'max:255'],
             'publishedAt' => ['required', 'string', 'max:255'],
-            'updatedAt' => ['required', 'string', 'max:255']
+            'updatedAt' => ['required', 'string', 'max:255'],
+            'launches' => ['array'],
+            'launches.*.id' => ['required'],
+            'launches.*.provider' => ['required'],
+            'events' => ['array'],
+            'events.*.id' => ['required'],
+            'events.*.provider' => ['required']
         ];
     }
 }

@@ -32,12 +32,18 @@ class UpdateBlogRequest extends FormRequest
         return [
             'id' => ['required', 'exists:blogs,id'],
             'title' => ['required', 'string', 'max:255'],
-            'url' => ['required', 'url', 'max:255', 'unique:blogs,url'],
+            'url' => ['required', 'url', 'max:255', 'unique:blogs,url,'.$this->route('id')],
             'imageUrl' => ['required', 'url', 'max:255'],
             'newsSite' => ['required', 'max:255'],
             'summary' => ['required', 'string', 'max:255'],
             'publishedAt' => ['required', 'string', 'max:255'],
-            'updatedAt' => ['required', 'string', 'max:255']
+            'updatedAt' => ['required', 'string', 'max:255'],
+            'launches' => ['array'],
+            'launches.*.id' => ['required'],
+            'launches.*.provider' => ['required'],
+            'events' => ['array'],
+            'events.*.id' => ['required'],
+            'events.*.provider' => ['required']
         ];
     }
 }

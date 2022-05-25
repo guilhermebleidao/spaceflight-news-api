@@ -35,23 +35,31 @@ class Blog extends Model
         return $this->belongsToMany(Event::class, 'blogs_events', 'blog_id', 'event_id');
     }
 
-    public function updateOrCreateLaunches($launches) {
+    public function updateOrCreateLaunches(array $launches, bool $detach) {
         foreach ($launches as $launch)  {
             Launch::updateOrCreate(
                 ['id' => $launch['id']],
                 ['provider' => $launch['provider']]
             );
         }
-        $this->launches()->syncWithoutDetaching(array_column($launches, 'id'));
+        if ($detach) {
+            $this->launches()->sync(array_column($launches, 'id'));
+        } else {
+            $this->launches()->syncWithoutDetaching(array_column($launches, 'id'));
+        }
     }
 
-    public function updateOrCreateEvents($events) {
+    public function updateOrCreateEvents(array $events, bool $detach) {
         foreach ($events as $event)  {
             Event::updateOrCreate(
                 ['id' => $event['id']],
                 ['provider' => $event['provider']]
             );
         }
-        $this->events()->syncWithoutDetaching(array_column($events, 'id'));
+        if ($detach) {
+            $this->events()->sync(array_column($events, 'id'));
+        } else {
+            $this->events()->syncWithoutDetaching(array_column($events, 'id'));
+        }
     }
 }

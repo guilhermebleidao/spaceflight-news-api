@@ -31,7 +31,13 @@ class StoreArticleRequest extends FormRequest
             'summary' => ['required', 'string', 'max:255'],
             'publishedAt' => ['required', 'string', 'max:255'],
             'updatedAt' => ['required', 'string', 'max:255'],
-            'featured' => ['required', 'boolean']
+            'featured' => ['required', 'boolean'],
+            'launches' => ['array'],
+            'launches.*.id' => ['required'],
+            'launches.*.provider' => ['required'],
+            'events' => ['array'],
+            'events.*.id' => ['required'],
+            'events.*.provider' => ['required']
         ];
     }
 }

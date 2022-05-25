@@ -69,8 +69,8 @@ class ArticleController extends Controller
         $data = array_merge(['id' => $id], $request->all());
         $article = Article::create($data);
 
-        if (isset($request->launches)) { $article->updateOrCreateLaunches($request->launches); }
-        if (isset($request->events)) { $article->updateOrCreateEvents($request->events); }
+        $article->updateOrCreateLaunches(isset($request->launches) ? $request->launches : [], false);
+        $article->updateOrCreateEvents(isset($request->events) ? $request->events : [], false);
 
         return response()->json($data, 201);
     }
@@ -105,13 +105,25 @@ class ArticleController extends Controller
      *     @OA\JsonContent(
      *       type="object",
      *       required={"title", "url", "imageUrl", "newsSite", "summary", "publishedAt", "updatedAt"},
-     *       @OA\Property(property="title", type="string", example="Edited article post :)"),
+     *       @OA\Property(property="title", type="string", example="Edited article :)"),
      *       @OA\Property(property="url", type="string", example="https://www.spaceflightnews.com/editedarticle"),
      *       @OA\Property(property="imageUrl", type="string", example="https://www.spaceflightnews.com/editedarticle.png"),
      *       @OA\Property(property="newsSite", type="string", example="Space Flight News"),
      *       @OA\Property(property="summary", type="string", example="Edited article :o"),
      *       @OA\Property(property="publishedAt", type="string", example="2022-05-16T22:43:44.148Z"),
-     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z")
+     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z"),
+     *       @OA\Property(property="launches", type="array",
+     *         @OA\Items(type="object", format="query",
+     *           @OA\Property(property="id", type="string", example="l4unc8-1d"),
+     *           @OA\Property(property="provider", type="string", example="Launch Provider")
+     *         )
+     *       ),
+     *       @OA\Property(property="events", type="array",
+     *         @OA\Items(type="object", format="query",
+     *           @OA\Property(property="id", type="string", example="3v3nt-1d"),
+     *           @OA\Property(property="provider", type="string", example="Event Provider")
+     *         )
+     *       )
      *     )
      *   ),
      *   @OA\Response(response=201, description="Created"),
@@ -123,6 +135,10 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         $article->update($request->all());
+
+        $article->updateOrCreateLaunches(isset($request->launches) ? $request->launches : [], true);
+        $article->updateOrCreateEvents(isset($request->events) ? $request->events : [], true);
+
         return $article;
     }
 

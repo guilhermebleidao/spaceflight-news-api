@@ -68,8 +68,8 @@ class BlogController extends Controller
         $data = array_merge(['id' => $id], $request->all());
         $blog = Blog::create($data);
 
-        if (isset($request->launches)) { $blog->updateOrCreateLaunches($request->launches); }
-        if (isset($request->events)) { $blog->updateOrCreateEvents($request->events); }
+        if (isset($request->launches)) { $blog->updateOrCreateLaunches($request->launches, false); }
+        if (isset($request->events)) { $blog->updateOrCreateEvents($request->events, false); }
 
         return response()->json($data, 201);
     }
@@ -110,7 +110,19 @@ class BlogController extends Controller
      *       @OA\Property(property="newsSite", type="string", example="Space Flight News"),
      *       @OA\Property(property="summary", type="string", example="Edited post :o"),
      *       @OA\Property(property="publishedAt", type="string", example="2022-05-16T22:43:44.148Z"),
-     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z")
+     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z"),
+     *       @OA\Property(property="launches", type="array",
+     *         @OA\Items(type="object", format="query",
+     *           @OA\Property(property="id", type="string", example="l4unc8-1d"),
+     *           @OA\Property(property="provider", type="string", example="Launch Provider")
+     *         )
+     *       ),
+     *       @OA\Property(property="events", type="array",
+     *         @OA\Items(type="object", format="query",
+     *           @OA\Property(property="id", type="string", example="3v3nt-1d"),
+     *           @OA\Property(property="provider", type="string", example="Event Provider")
+     *         )
+     *       )
      *     )
      *   ),
      *   @OA\Response(response=201, description="Created"),
@@ -121,6 +133,10 @@ class BlogController extends Controller
     {
         $blog = Blog::find($id);
         $blog->update($request->all());
+
+        if (isset($request->launches)) { $blog->updateOrCreateLaunches($request->launches, true); }
+        if (isset($request->events)) { $blog->updateOrCreateEvents($request->events, true); }
+
         return $blog;
     }
 
