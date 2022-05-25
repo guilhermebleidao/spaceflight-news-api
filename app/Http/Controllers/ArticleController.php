@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
+use App\Models\Event;
+use App\Models\Launch;
 use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
@@ -40,7 +42,19 @@ class ArticleController extends Controller
      *       @OA\Property(property="summary", type="string", example="New article :o"),
      *       @OA\Property(property="publishedAt", type="string", example="2022-05-16T22:43:44.148Z"),
      *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z"),
-     *       @OA\Property(property="featured", type="boolean", example=true)
+     *       @OA\Property(property="featured", type="boolean", example=true),
+     *       @OA\Property(property="launches", type="array",
+     *         @OA\Items(type="object", format="query",
+     *           @OA\Property(property="id", type="string", example="l4unc8-1d"),
+     *           @OA\Property(property="provider", type="string", example="Launch Provider")
+     *         )
+     *       ),
+     *       @OA\Property(property="events", type="array",
+     *         @OA\Items(type="object", format="query",
+     *           @OA\Property(property="id", type="string", example="3v3nt-1d"),
+     *           @OA\Property(property="provider", type="string", example="Event Provider")
+     *         )
+     *       )
      *     )
      *   ),
      *   @OA\Response(response=201, description="Created"),
@@ -53,9 +67,29 @@ class ArticleController extends Controller
         $id = $id >= 0 ? -1 : $id;
 
         $data = array_merge(['id' => $id], $request->all());
-        if (Article::create($data)) {
-            return response()->json($data, 201);
+        $article = Article::create($data);
+
+        if (isset($request->launches)) {
+            foreach ($request->launches as $launch)  {
+                Launch::updateOrCreate(
+                    ['id' => $launch['id']],
+                    ['provider' => $launch['provider']]
+                );
+            }
+            $article->launches()->syncWithoutDetaching(array_column($request->launches, 'id'));
         }
+
+        if (isset($request->events)) {
+            foreach ($request->events as $event)  {
+                Event::updateOrCreate(
+                    ['id' => $event['id']],
+                    ['provider' => $event['provider']]
+                );
+            }
+            $article->events()->syncWithoutDetaching(array_column($request->events, 'id'));
+        }
+
+        return response()->json($data, 201);
     }
 
     /**

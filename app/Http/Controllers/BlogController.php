@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Models\Event;
+use App\Models\Launch;
 use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
@@ -39,7 +41,19 @@ class BlogController extends Controller
      *       @OA\Property(property="newsSite", type="string", example="Space Flight News"),
      *       @OA\Property(property="summary", type="string", example="New post :o"),
      *       @OA\Property(property="publishedAt", type="string", example="2022-05-16T22:43:44.148Z"),
-     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z")
+     *       @OA\Property(property="updatedAt", type="string", example="2022-05-16T22:43:44.148Z"),
+     *       @OA\Property(property="launches", type="array",
+     *         @OA\Items(type="object", format="query",
+     *           @OA\Property(property="id", type="string", example="l4unc8-1d"),
+     *           @OA\Property(property="provider", type="string", example="Launch Provider")
+     *         )
+     *       ),
+     *       @OA\Property(property="events", type="array",
+     *         @OA\Items(type="object", format="query",
+     *           @OA\Property(property="id", type="string", example="3v3nt-1d"),
+     *           @OA\Property(property="provider", type="string", example="Event Provider")
+     *         )
+     *       )
      *     )
      *   ),
      *   @OA\Response(response=201, description="Created"),
@@ -52,9 +66,29 @@ class BlogController extends Controller
         $id = $id >= 0 ? -1 : $id;
 
         $data = array_merge(['id' => $id], $request->all());
-        if (Blog::create($data)) {
-            return response()->json($data, 201);
+        $blog = Blog::create($data);
+
+        if (isset($request->launches)) {
+            foreach ($request->launches as $launch)  {
+                Launch::updateOrCreate(
+                    ['id' => $launch['id']],
+                    ['provider' => $launch['provider']]
+                );
+            }
+            $blog->launches()->syncWithoutDetaching(array_column($request->launches, 'id'));
         }
+
+        if (isset($request->events)) {
+            foreach ($request->events as $event)  {
+                Event::updateOrCreate(
+                    ['id' => $event['id']],
+                    ['provider' => $event['provider']]
+                );
+            }
+            $blog->events()->syncWithoutDetaching(array_column($request->events, 'id'));
+        }
+
+        return response()->json($data, 201);
     }
 
     /**

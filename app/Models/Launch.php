@@ -11,9 +11,13 @@ class Launch extends Model
 
     protected $table = 'launches';
 
+    protected $fillable = ['id', 'provider'];
+
     protected $hidden = [
         'created_at',
         'updated_at',
         'pivot'
     ];
+
+    public $incrementing = false;
 }

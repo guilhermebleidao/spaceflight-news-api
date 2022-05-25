@@ -80,6 +80,40 @@
                                     "featured": {
                                         "type": "boolean",
                                         "example": true
+                                    },
+                                    "launches": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "l4unc8-1d"
+                                                },
+                                                "provider": {
+                                                    "type": "string",
+                                                    "example": "Launch Provider"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "format": "query"
+                                        }
+                                    },
+                                    "events": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "3v3nt-1d"
+                                                },
+                                                "provider": {
+                                                    "type": "string",
+                                                    "example": "Event Provider"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "format": "query"
+                                        }
                                     }
                                 },
                                 "type": "object"
@@ -285,6 +319,40 @@
                                     "updatedAt": {
                                         "type": "string",
                                         "example": "2022-05-16T22:43:44.148Z"
+                                    },
+                                    "launches": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "l4unc8-1d"
+                                                },
+                                                "provider": {
+                                                    "type": "string",
+                                                    "example": "Launch Provider"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "format": "query"
+                                        }
+                                    },
+                                    "events": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "3v3nt-1d"
+                                                },
+                                                "provider": {
+                                                    "type": "string",
+                                                    "example": "Event Provider"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "format": "query"
+                                        }
                                     }
                                 },
                                 "type": "object"

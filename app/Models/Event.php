@@ -11,9 +11,13 @@ class Event extends Model
 
     protected $table = 'events';
 
+    protected $fillable = ['id', 'provider'];
+
     protected $hidden = [
         'created_at',
         'updated_at',
         'pivot'
     ];
+
+    public $incrementing = false;
 }

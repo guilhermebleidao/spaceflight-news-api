@@ -26,6 +26,8 @@ class Article extends Model
         'updated_at'
     ];
 
+    public $incrementing = false;
+
     public function launches() {
         return $this->belongsToMany(Launch::class, 'articles_launches', 'article_id', 'launch_id');
     }

@@ -25,6 +25,8 @@ class Blog extends Model
         'updated_at'
     ];
 
+    public $incrementing = false;
+
     public function launches() {
         return $this->belongsToMany(Launch::class, 'blogs_launches', 'blog_id', 'launch_id');
     }
