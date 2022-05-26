@@ -156,6 +156,8 @@ class BlogController extends Controller
         if (!isset($blog->id)) {
             return response()->json(['error' => 'Blog post not found'], 404);
         }
+        $blog->updateOrCreateLaunches([], true);
+        $blog->updateOrCreateEvents([], true);
         $blog->delete();
     }
 }

@@ -158,6 +158,8 @@ class ArticleController extends Controller
         if (!isset($article->id)) {
             return response()->json(['error' => 'Article not found'], 404);
         }
+        $article->updateOrCreateLaunches([], true);
+        $article->updateOrCreateEvents([], true);
         $article->delete();
     }
 }
