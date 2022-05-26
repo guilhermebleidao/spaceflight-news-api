@@ -14,10 +14,8 @@ class CreateArticlesLaunchesTable extends Migration
     public function up()
     {
         Schema::create('articles_launches', function (Blueprint $table) {
-            $table->id();
             $table->bigInteger('article_id');
             $table->string('launch_id');
-            $table->timestamps();
 
             $table->foreign('article_id')->references('id')->on('articles');
             $table->foreign('launch_id')->references('id')->on('launches');

@@ -14,10 +14,8 @@ class CreateBlogsEventsTable extends Migration
     public function up()
     {
         Schema::create('blogs_events', function (Blueprint $table) {
-            $table->id();
             $table->bigInteger('blog_id');
             $table->string('event_id');
-            $table->timestamps();
 
             $table->foreign('blog_id')->references('id')->on('blogs');
             $table->foreign('event_id')->references('id')->on('events');
